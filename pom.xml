@@ -91,7 +91,7 @@
 			<!--<artifactId>junit</artifactId>-->
 		<!--</dependency>-->
 	</dependencies>
-<!-- pull	 -->
+<!-- pull	ide -->
 	<build>
 		<plugins>
 			<plugin>
