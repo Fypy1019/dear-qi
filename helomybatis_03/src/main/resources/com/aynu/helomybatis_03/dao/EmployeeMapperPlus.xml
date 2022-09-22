@@ -36,5 +36,7 @@
     -->
 
     <!--public Employee getEmpAndDept(Integer id);-->
-    <select id="getEmpAndDept"
+    <select id="getEmpAndDept">
+
+    </select>
 </mapper>
