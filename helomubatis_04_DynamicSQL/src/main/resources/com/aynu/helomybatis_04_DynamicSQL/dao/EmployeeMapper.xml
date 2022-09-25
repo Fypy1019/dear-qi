@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--<mapper namespace="com.aynu.helomybatis.EmployeeMapper">-->
+<mapper namespace="com.aynu.helomybatis_04_DynamicSQL.dao.EmployeeMapper">
+    <!--namespace：名称空间 注释为原始 应用为指定为接口的全类名
+        id:唯一标识
+        resultType:返回值类型
+        databaseId:这条语句是在mysql环境下执行的
+        #{id}：从传递过来的参数中取出id值
+    -->
+    <!--//上面与接口绑定，这里与方法绑定-->
+    <select id="getEmpById" resultType="emp" databaseId="mysql">
+
+        SELECT * FROM tbl_employee
+          WHERE id=#{idada}
+    </select>
+    <!--<select id="getEmpById" resultType="emp" databaseId="oracle">-->
+    <!--select * from tbl_employee where id = #{id}-->
+    <!--</select>-->
+
+
+    <!--public void addEmp(Employee employee);-->
+    <!--parameterType:参数类型，可以省略
+        mysql支持自增主键，自增主键值的获取，mybatisy也是利用statement.getGeneratedKeys();
+        useGeneratedKeys="true";使用自增主键获取主键值策略
+        keyProperty：指定对应的主键属性，也就是mybatis获取到主键值以后，将这个值封装给javaBean的哪个属性
+    -->
+    <insert id="addEmp" parameterType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tbl_employee(last_name,email,gender) VALUES (#{lastName},#{email},#{gender})
+    </insert>
+    <!--public void updateEmp(Employee employee);-->
+    <update id="updateEmp">
+        UPDATE tbl_employee
+          SET last_name = #{lastName},email = #{email},gender=#{gender}
+          WHERE id=#{id}
+    </update>
+    <!--public void deleteEmpById(Integer id);-->
+    <delete id="deleteEmpById">
+        DELETE FROM tbl_employee
+          WHERE id=#{id}
+    </delete>
+
+    <select id="getEmpByIdAndLastName" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+        SELECT * FROM tbl_employee
+        WHERE id=#{id}
+        AND last_name=#{lastName}
+    </select>
+
+    <select id="getEmpByMap" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+        SELECT * FROM tbl_employee
+        WHERE id=#{id}
+        AND last_name=#{lastName}
+    </select>
+
+    <select id="getEmpsByLastNameLike" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+        SELECT * FROM tbl_employee
+        WHERE last_name
+        LIKE #{lastName}
+    </select>
+    
+    <select id="getEmpByIdReturnMap" resultType="map">
+        SELECT * FROM tbl_employee
+        WHERE id=#{id}
+    </select>
+
+    <select id="getEmpByLastNameLikeReturnMap" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+        SELECT * FROM tbl_employee
+        WHERE last_name LIKE #{lastName}
+    </select>
+</mapper>
