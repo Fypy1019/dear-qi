@@ -1,7 +1,7 @@
-package com.aynu.helomubatis_04_DynamicSQL.dao;
+package com.aynu.helomybatis_04_DynamicSQL.dao;
 
-import com.aynu.helomubatis_04_DynamicSQL.pojo.Department;
-import com.aynu.helomubatis_04_DynamicSQL.pojo.Employee;
+import com.aynu.helomybatis_04_DynamicSQL.pojo.Department;
+import com.aynu.helomybatis_04_DynamicSQL.pojo.Employee;
 
 import java.util.List;
 

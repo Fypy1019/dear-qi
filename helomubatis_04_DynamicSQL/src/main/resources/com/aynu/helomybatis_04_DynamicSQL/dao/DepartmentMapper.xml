@@ -2,22 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aynu.helomybatis_03.dao.DepartmentMapper">
+<mapper namespace="com.aynu.helomybatis_04_DynamicSQL.dao.DepartmentMapper">
     <!--public Department getDeptById(Integer id);-->
-    <select id="getDeptById" resultType="com.aynu.helomubatis_04_DynamicSQL.pojo.Department">
+    <select id="getDeptById" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Department">
         SELECT id,dept_name departmentName
         FROM tbl_dept
         WHERE id=#{id}
     </select>
 
     <!--collection嵌套结果集的方式，定义关联的集合类型元素的属性封装规则-->
-    <resultMap id="MyDept" type="com.aynu.helomubatis_04_DynamicSQL.pojo.Department">
+    <resultMap id="MyDept" type="com.aynu.helomybatis_04_DynamicSQL.pojo.Department">
         <id column="did" property="id"/>
         <result column="dept_name" property="departmentName"/>
         <!--collection定义关联集合类型的属性的封装规则
             ofType:指定集合里面元素的类型
             -->
-        <collection property="employees" ofType="com.aynu.helomubatis_04_DynamicSQL.pojo.Employee">
+        <collection property="employees" ofType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
             <!--定义这个集合中元素的封装规则-->
             <id column="eid" property="id"/>
             <result column="last_name" property="lastName"/>
@@ -35,7 +35,7 @@
                 WHERE d.id=#{id}
     </select>
 
-    <resultMap id="DeptByName" type="com.aynu.helomubatis_04_DynamicSQL.pojo.Department">
+    <resultMap id="DeptByName" type="com.aynu.helomybatis_04_DynamicSQL.pojo.Department">
         <id column="id" property="id"/>
         <result column="dept_name" property="departmentName"/>
     </resultMap>
@@ -63,10 +63,10 @@
                 column="{key1=column1,key2=column2}"
                 fetchType默认lazy,表示使用延迟加载，全局延迟加载可以在这里禁用
     -->
-    <resultMap id="DeptIdLines" type="com.aynu.helomubatis_04_DynamicSQL.pojo.Department">
+    <resultMap id="DeptIdLines" type="com.aynu.helomybatis_04_DynamicSQL.pojo.Department">
         <id column="id" property="id"/>
         <result column="dept_name" property="departmentName"/>
-        <collection property="employees" select="com.aynu.helomubatis_04_DynamicSQL.dao.EmployeeMapperPlus.getEmpsByDeptIdLines"
+        <collection property="employees" select="com.aynu.helomybatis_04_DynamicSQL.dao.EmployeeMapperPlus.getEmpsByDeptIdLines"
                     column="{deptId=id}}" fetchType="eager">
         </collection>
     </resultMap>
