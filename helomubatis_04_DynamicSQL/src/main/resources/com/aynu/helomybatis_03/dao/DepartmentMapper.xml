@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aynu.helomybatis_03.dao.DepartmentMapper">
+    <!--public Department getDeptById(Integer id);-->
+    <select id="getDeptById" resultType="com.aynu.helomubatis_04_DynamicSQL.pojo.Department">
+        SELECT id,dept_name departmentName
+        FROM tbl_dept
+        WHERE id=#{id}
+    </select>
+
+    <!--collection嵌套结果集的方式，定义关联的集合类型元素的属性封装规则-->
+    <resultMap id="MyDept" type="com.aynu.helomubatis_04_DynamicSQL.pojo.Department">
+        <id column="did" property="id"/>
+        <result column="dept_name" property="departmentName"/>
+        <!--collection定义关联集合类型的属性的封装规则
+            ofType:指定集合里面元素的类型
+            -->
+        <collection property="employees" ofType="com.aynu.helomubatis_04_DynamicSQL.pojo.Employee">
+            <!--定义这个集合中元素的封装规则-->
+            <id column="eid" property="id"/>
+            <result column="last_name" property="lastName"/>
+            <result column="email" property="email"/>
+            <result column="gender" property="gender"/>
+        </collection>
+    </resultMap>
+    <!--public Department getDeptByIdPlus(Integer id);-->
+    <select id="getDeptByIdPlus" resultMap="MyDept">
+        SELECT d.id did,d.dept_name dept_name,
+                e.id eid,e.last_name last_name,e.email email,e.gender gender
+                FROM tbl_dept d
+                LEFT JOIN tbl_employee e
+                ON d.id=e.d_id
+                WHERE d.id=#{id}
+    </select>
+
+    <resultMap id="DeptByName" type="com.aynu.helomubatis_04_DynamicSQL.pojo.Department">
+        <id column="id" property="id"/>
+        <result column="dept_name" property="departmentName"/>
+    </resultMap>
+    <!--public Department getdeptByName(String departmentName);-->
+    <select id="getdeptByName" resultMap="DeptByName">
+        SELECT * FROM tbl_dept WHERE dept_name=#{departmentName}
+    </select>
+
+
+    <!--<resultMap id="DeptByIdStep" tycom.aynu.helomybatis_04_DynamicSQL_DynamicSQLs_03.pojo.Department">-->
+        <!--<id column="id" property="id"/>-->
+        <!--<result column="dept_name" property="departmentName"/>-->
+        <!--<collection property="employees" selecom.aynu.helomybatis_04_DynamicSQL_DynamicSQLs_03.dao.EmployeeMapperPlus.getEmpsByDeptId"-->
+                    <!--column="id">-->
+        <!--</collection>-->
+    <!--</resultMap>-->
+    <!--&lt;!&ndash;public Department getDeptByIdStep(Integer id);&ndash;&gt;-->
+    <!--<select id="getDeptByIdStep" resultMap="DeptByIdStep">-->
+        <!--SELECT  id,dept_name dept_name FROM tbl_dept WHERE id=#{id}-->
+    <!--</select>-->
+
+
+    <!--扩展：多列的值传递过去：
+                将多列的值封装map传递
+                column="{key1=column1,key2=column2}"
+                fetchType默认lazy,表示使用延迟加载，全局延迟加载可以在这里禁用
+    -->
+    <resultMap id="DeptIdLines" type="com.aynu.helomubatis_04_DynamicSQL.pojo.Department">
+        <id column="id" property="id"/>
+        <result column="dept_name" property="departmentName"/>
+        <collection property="employees" select="com.aynu.helomubatis_04_DynamicSQL.dao.EmployeeMapperPlus.getEmpsByDeptIdLines"
+                    column="{deptId=id}}" fetchType="eager">
+        </collection>
+    </resultMap>
+    <!--public List<Employee> DeptByIdAndName(Integer deptId,String deptName);-->
+    <select id="getDeptByIdStep" resultMap="DeptIdLines">
+        SELECT  id,dept_name dept_name FROM tbl_dept WHERE id=#{id}
+    </select>
+</mapper>
