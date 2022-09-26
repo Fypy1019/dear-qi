@@ -17,4 +17,8 @@ public class Department {
     private Integer id;
     private String departmentName;
     private List<Employee> employees;
+
+    public Department(Integer id) {
+        this.id = id;
+    }
 }
