@@ -1,1 +1,0 @@
-package com.aynu.helomybatis_04_DynamicSQL;

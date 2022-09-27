@@ -1,6 +1,6 @@
-package com.aynu.helomybatis_04_DynamicSQL.dao;
+package com.aynu.helomybatis_02.dao;
 
-import com.aynu.helomybatis_04_DynamicSQL.pojo.Employee;
+import com.aynu.helomybatis_02.pojo.Employee;
 import org.apache.ibatis.annotations.Select;
 
 /**

@@ -1,4 +1,4 @@
-package com.aynu.helomybatis_04_DynamicSQL.pojo;
+package com.aynu.helomybatis_03.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

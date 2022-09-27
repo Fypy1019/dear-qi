@@ -1,8 +1,8 @@
-package com.aynu.helomybatis_04_DynamicSQL.test;
+package com.aynu.helomybatis_02.test;
 
-import com.aynu.helomybatis_04_DynamicSQL.dao.EmployeeMapper;
-import com.aynu.helomybatis_04_DynamicSQL.dao.EmployeeMapperAnnotation;
-import com.aynu.helomybatis_04_DynamicSQL.pojo.Employee;
+import com.aynu.helomybatis_02.dao.EmployeeMapper;
+import com.aynu.helomybatis_02.dao.EmployeeMapperAnnotation;
+import com.aynu.helomybatis_02.pojo.Employee;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -55,7 +55,7 @@ public class MyBatis {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
-            Employee employee = sqlSession.selectOne("com.aynu.helomybatis_04_DynamicSQL.EmployeeMapper.selectEmp", 5);
+            Employee employee = sqlSession.selectOne("com.aynu.helomybatis_02.EmployeeMapper.selectEmp", 5);
             System.out.println(employee);
         } finally {
             sqlSession.close();

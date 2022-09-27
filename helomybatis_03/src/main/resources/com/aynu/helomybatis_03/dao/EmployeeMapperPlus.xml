@@ -2,13 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aynu.helomybatis_04_DynamicSQL.dao.EmployeeMapperPlus">
+<mapper namespace="com.aynu.helomybatis_03.dao.EmployeeMapperPlus">
     
     <!--自定义某个javaBean的封装规则
         type:自定义规则的java类型
         id:唯一id方便引用
     -->
-    <resultMap id="MySimpleEmp" type="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+    <resultMap id="MySimpleEmp" type="com.aynu.helomybatis_03.pojo.Employee">
         <!--指定主键列的封装规则
             id定义主键底层会有优化
             column:指定哪一列
@@ -37,7 +37,7 @@
     <!--
         联合查询：级联属性封装结果集
     -->
-    <resultMap id="MyDifEmp" type="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+    <resultMap id="MyDifEmp" type="com.aynu.helomybatis_03.pojo.Employee">
         <id column="id" property="id"/>
         <result column="last_name" property="lastName"/>
         <result column="gender" property="gender"/>
@@ -46,13 +46,13 @@
 
     </resultMap>
     <!--使用association定义关联单个对象的封装规则-->
-    <resultMap id="MyDifEmp2" type="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+    <resultMap id="MyDifEmp2" type="com.aynu.helomybatis_03.pojo.Employee">
         <id column="id" property="id"/>
         <result column="last_name" property="lastName"/>
         <result column="gender" property="gender"/>
         <!--association可以指定联合的javaBean对象-->
         <!--javaType:制定这个属性对象的类型【不能省略】-->
-        <association property="dept" javaType="com.aynu.helomybatis_04_DynamicSQL.pojo.Department">
+        <association property="dept" javaType="com.aynu.helomybatis_03.pojo.Department">
             <id column="did" property="id"/>
             <result column="dept_name" property="departmentName"/>
         </association>
@@ -70,7 +70,7 @@
         2.根据查询员工信息中的d_id值去部门表查出部门信息
         3.部门设置到员工中；
     -->
-    <resultMap id="MyStepEmp" type="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+    <resultMap id="MyStepEmp" type="com.aynu.helomybatis_03.pojo.Employee">
         <id column="id" property="id"/>
         <result column="last_name" property="lastName"/>
         <result column="email" property="email"/>
@@ -82,7 +82,7 @@
             流程：使用select指定的方法（传入column指定的这列参数的值）查出对象，并封装给property指定的属性
         -->
         <association property="dept"
-                     select="com.aynu.helomybatis_04_DynamicSQL.dao.DepartmentMapper.getDeptById"
+                     select="com.aynu.helomybatis_03.dao.DepartmentMapper.getDeptById"
                      column="d_id">
 
         </association>
@@ -110,11 +110,11 @@
     -->
 
     <!--public List<Employee> getEmpsByDeptId(Integer deptId);-->
-    <select id="getEmpsByDeptId" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+    <select id="getEmpsByDeptId" resultType="com.aynu.helomybatis_03.pojo.Employee">
         SELECT * FROM tbl_employee WHERE d_id=#{deptId}
     </select>
 
-    <select id="getEmpsByDeptIdLines" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+    <select id="getEmpsByDeptIdLines" resultType="com.aynu.helomybatis_03.pojo.Employee">
         SELECT * FROM tbl_employee WHERE d_id=#{deptId}
     </select>
 
@@ -126,7 +126,7 @@
                 如果查出的是女生：就把部门信息查询出来，否则不查询；
                 如果是男生，把last_name这一列的值赋值给email
     -->
-            <resultMap id="MyEmpDis" type="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+            <resultMap id="MyEmpDis" type="com.aynu.helomybatis_03.pojo.Employee">
                 <id column="id" property="id"/>
                 <result column="last_name" property="lastName"/>
                 <result column="email" property="email"/>
@@ -138,13 +138,13 @@
                 <discriminator javaType="string" column="gender">
                     <!--0=女生 resultType:指定封装的结果类型-->
                     <!--1=男生-->
-                    <case value="0" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+                    <case value="0" resultType="com.aynu.helomybatis_03.pojo.Employee">
                         <association property="dept"
-                                     select="com.aynu.helomybatis_04_DynamicSQL.dao.DepartmentMapper.getDeptById"
+                                     select="com.aynu.helomybatis_03.dao.DepartmentMapper.getDeptById"
                                      column="d_id">
                         </association>
                     </case>
-                    <case value="1" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+                    <case value="1" resultType="com.aynu.helomybatis_03.pojo.Employee">
                         <id column="id" property="id"/>
                         <result column="last_name" property="lastName"/>
                         <result column="last_name" property="email"/>

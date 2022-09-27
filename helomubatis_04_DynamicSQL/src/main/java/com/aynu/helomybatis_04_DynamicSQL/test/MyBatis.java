@@ -8,9 +8,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -124,7 +127,7 @@ public class MyBatis {
             System.out.println(aBoolean);
             //测试删除
 //            mapper.deleteEmpById(4);
-            
+
             //2.手动提交数据（参数不加true时）
 //            openSession.commit();
         }finally {
@@ -270,6 +273,59 @@ public class MyBatis {
             for (Employee emp : empsByConditionTrim) {
                 System.out.println(emp);
             }
+        }finally {
+            openSession.close();
+        }
+    }
+    @Test
+    public void testChoose() throws IOException {
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSession openSession = sqlSessionFactory.openSession();
+        try {
+            EmployeeMapperDynamicSQL mapper = openSession.getMapper(EmployeeMapperDynamicSQL.class);
+            List<Employee> empsByConditionChoose = mapper.getEmpsByConditionChoose(new Employee(null,null,null,null,null));
+            System.out.println(empsByConditionChoose);
+        }finally {
+            openSession.close();
+        }
+    }
+    @Test
+    public void updateConditionTest() throws IOException {
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSession openSession = sqlSessionFactory.openSession(true);
+        try {
+            EmployeeMapperDynamicSQL mapper = openSession.getMapper(EmployeeMapperDynamicSQL.class);
+            Employee employee = new Employee(1, "Torb", null, null, null);
+            mapper.updateEmp(employee);
+        }finally {
+            openSession.close();
+        }
+    }
+
+    @Test
+    public void testGetEmpsByConditionForeach() throws IOException {
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSession openSession = sqlSessionFactory.openSession(true);
+        try {
+            EmployeeMapperDynamicSQL mapper = openSession.getMapper(EmployeeMapperDynamicSQL.class);
+            List<Employee> list = mapper.getEmpsByConditionForeach(Arrays.asList(1, 2, 3, 4));
+            for (Employee emps : list) {
+                System.out.println(emps);
+            }
+        }finally {
+            openSession.close();
+        }
+    }
+    @Test
+    public void testAddEmps() throws IOException {
+        SqlSession openSession = getSqlSessionFactory().openSession(true);
+        try {
+            EmployeeMapperDynamicSQL mapper = openSession.getMapper(EmployeeMapperDynamicSQL.class);
+            ArrayList<Employee> employees = new ArrayList<>();
+            employees.add(new Employee(null,"smith","smith@aynu.com","1",new Department(1)));
+            employees.add(new Employee(null,"allen","allen@aynu.com","0",new Department(1)));
+            mapper.addEmps(employees);
+
         }finally {
             openSession.close();
         }

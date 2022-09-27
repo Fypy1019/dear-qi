@@ -1,11 +1,11 @@
-package com.aynu.helomybatis_04_DynamicSQL.test;
+package com.aynu.helomybatis_03.test;
 
-import com.aynu.helomybatis_04_DynamicSQL.dao.DepartmentMapper;
-import com.aynu.helomybatis_04_DynamicSQL.dao.EmployeeMapper;
-import com.aynu.helomybatis_04_DynamicSQL.dao.EmployeeMapperAnnotation;
-import com.aynu.helomybatis_04_DynamicSQL.dao.EmployeeMapperPlus;
-import com.aynu.helomybatis_04_DynamicSQL.pojo.Department;
-import com.aynu.helomybatis_04_DynamicSQL.pojo.Employee;
+import com.aynu.helomybatis_03.dao.DepartmentMapper;
+import com.aynu.helomybatis_03.dao.EmployeeMapper;
+import com.aynu.helomybatis_03.dao.EmployeeMapperAnnotation;
+import com.aynu.helomybatis_03.dao.EmployeeMapperPlus;
+import com.aynu.helomybatis_03.pojo.Department;
+import com.aynu.helomybatis_03.pojo.Employee;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -60,7 +60,7 @@ public class MyBatis {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
-            Employee employee = sqlSession.selectOne("com.aynu.helomybatis_04_DynamicSQL.EmployeeMapper.selectEmp", 1);
+            Employee employee = sqlSession.selectOne("com.aynu.helomybatis_03.EmployeeMapper.selectEmp", 1);
             System.out.println(employee);
         } finally {
             sqlSession.close();

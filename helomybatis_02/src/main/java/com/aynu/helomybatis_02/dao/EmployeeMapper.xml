@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--<mapper namespace="com.aynu.helomybatis.EmployeeMapper">-->
-<mapper namespace="com.aynu.helomybatis_04_DynamicSQL.dao.EmployeeMapper">
+<mapper namespace="com.aynu.helomybatis_02.dao.EmployeeMapper">
     <!--namespace：名称空间 注释为原始 应用为指定为接口的全类名
         id:唯一标识
         resultType:返回值类型

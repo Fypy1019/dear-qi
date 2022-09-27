@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--<mapper namespace="com.aynu.helomybatis.EmployeeMapper">-->
-<mapper namespace="com.aynu.helomybatis_04_DynamicSQL.dao.EmployeeMapper">
+<mapper namespace="com.aynu.helomybatis_03.dao.EmployeeMapper">
     <!--namespace：名称空间 注释为原始 应用为指定为接口的全类名
         id:唯一标识
         resultType:返回值类型
@@ -27,7 +27,7 @@
         useGeneratedKeys="true";使用自增主键获取主键值策略
         keyProperty：指定对应的主键属性，也就是mybatis获取到主键值以后，将这个值封装给javaBean的哪个属性
     -->
-    <insert id="addEmp" parameterType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee" useGeneratedKeys="true" keyProperty="id">
+    <insert id="addEmp" parameterType="com.aynu.helomybatis_03.pojo.Employee" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO tbl_employee(last_name,email,gender) VALUES (#{lastName},#{email},#{gender})
     </insert>
     <!--public void updateEmp(Employee employee);-->
@@ -42,19 +42,19 @@
           WHERE id=#{id}
     </delete>
 
-    <select id="getEmpByIdAndLastName" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+    <select id="getEmpByIdAndLastName" resultType="com.aynu.helomybatis_03.pojo.Employee">
         SELECT * FROM tbl_employee
         WHERE id=#{id}
         AND last_name=#{lastName}
     </select>
 
-    <select id="getEmpByMap" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+    <select id="getEmpByMap" resultType="com.aynu.helomybatis_03.pojo.Employee">
         SELECT * FROM tbl_employee
         WHERE id=#{id}
         AND last_name=#{lastName}
     </select>
 
-    <select id="getEmpsByLastNameLike" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+    <select id="getEmpsByLastNameLike" resultType="com.aynu.helomybatis_03.pojo.Employee">
         SELECT * FROM tbl_employee
         WHERE last_name
         LIKE #{lastName}
@@ -65,7 +65,7 @@
         WHERE id=#{id}
     </select>
 
-    <select id="getEmpByLastNameLikeReturnMap" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
+    <select id="getEmpByLastNameLikeReturnMap" resultType="com.aynu.helomybatis_03.pojo.Employee">
         SELECT * FROM tbl_employee
         WHERE last_name LIKE #{lastName}
     </select>

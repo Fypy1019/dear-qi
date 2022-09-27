@@ -1,4 +1,4 @@
-package com.aynu.helomybatis_04_DynamicSQL.pojo;
+package com.aynu.helomybatis_02.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,11 +12,10 @@ import org.apache.ibatis.type.Alias;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Alias("emp")//别名处理器产生冲突时使用的注解,引用时可以用emp也可以使用全类名
+@Alias("emp")//别名处理器产生冲突时使用的注解
 public class Employee {
     private Integer id;
     private String lastName;
     private String email;
     private String gender;
-    private Department dept;
 }
