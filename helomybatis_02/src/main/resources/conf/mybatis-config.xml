@@ -101,6 +101,6 @@
         <!--<mapper resource="conf/mybatis/mapper/EmployeeMapper.xml"/>-->
         <!--<mapper clacom.aynu.helomybatis_03s_02.dao.EmployeeMapperAnnotation"/>-->
         <!--批量注册-->
-        <package name="com.aynu.helomybatis_03.dao"/>
+        <package name="com.aynu.helomybatis_02.dao"/>
     </mappers>
 </configuration>

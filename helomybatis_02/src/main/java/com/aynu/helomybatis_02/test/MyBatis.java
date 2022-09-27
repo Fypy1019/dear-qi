@@ -55,7 +55,7 @@ public class MyBatis {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
-            Employee employee = sqlSession.selectOne("com.aynu.helomybatis_03.EmployeeMapper.selectEmp", 5);
+            Employee employee = sqlSession.selectOne("com.aynu.helomybatis_02.EmployeeMapper.selectEmp", 5);
             System.out.println(employee);
         } finally {
             sqlSession.close();

@@ -60,7 +60,7 @@ public class MyBatis {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
-            Employee employee = sqlSession.selectOne("com.aynu.helomybatis_03.EmployeeMapper.selectEmp", 1);
+            Employee employee = sqlSession.selectOne("com.aynu.helomybatis_04_DynamicSQL.EmployeeMapper.selectEmp", 1);
             System.out.println(employee);
         } finally {
             sqlSession.close();
