@@ -82,7 +82,7 @@
             流程：使用select指定的方法（传入column指定的这列参数的值）查出对象，并封装给property指定的属性
         -->
         <association property="dept"
-                     select="com.aynu.helomybatis_03.dao.DepartmentMapper.getDeptById"
+                     select="com.aynu.helomybatis_04_DynamicSQL.dao.DepartmentMapper.getDeptById"
                      column="d_id">
 
         </association>
@@ -140,7 +140,7 @@
                     <!--1=男生-->
                     <case value="0" resultType="com.aynu.helomybatis_04_DynamicSQL.pojo.Employee">
                         <association property="dept"
-                                     select="com.aynu.helomybatis_03.dao.DepartmentMapper.getDeptById"
+                                     select="com.aynu.helomybatis_04_DynamicSQL.dao.DepartmentMapper.getDeptById"
                                      column="d_id">
                         </association>
                     </case>

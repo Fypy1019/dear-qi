@@ -1,8 +1,8 @@
-package com.aynu.helomybatis_03.test;
+package com.aynu.helomybatis_02.test;
 
-import com.aynu.helomybatis_03.dao.EmployeeMapper;
-import com.aynu.helomybatis_03.dao.EmployeeMapperAnnotation;
-import com.aynu.helomybatis_03.pojo.Employee;
+import com.aynu.helomybatis_02.dao.EmployeeMapper;
+import com.aynu.helomybatis_02.dao.EmployeeMapperAnnotation;
+import com.aynu.helomybatis_02.pojo.Employee;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;

@@ -1,4 +1,4 @@
-package com.aynu.helomybatis_03.pojo;
+package com.aynu.helomybatis_02.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

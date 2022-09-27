@@ -1,6 +1,6 @@
-package com.aynu.helomybatis_03.dao;
+package com.aynu.helomybatis_02.dao;
 
-import com.aynu.helomybatis_03.pojo.Employee;
+import com.aynu.helomybatis_02.pojo.Employee;
 
 /**接口与配置文件动态绑定
  * @author hqlsyq
